@@ -30,26 +30,26 @@ void print(vector<int>& arr)
 // первая рацизация алгоритма
 int kadane(vector<int>& arr, int n)
 {
-	int sum1 = 0;
-	int sum2 = 0;
+	int loc_sum = 0;
+	int glob_sum = 0;
 	for (int i = 0; i < n; ++i)
 	{
-		sum1 = max(0, sum1 + arr[i]);
-		sum2 = max(sum1, sum2);
+		loc_sum = max(0, loc_sum + arr[i]);
+		glob_sum = max(loc_sum, glob_sum);
 	}
-	return sum2;
+	return glob_sum;
 }
 
 int kadane2(int arr[], int n)
 {
-	int max_so_far = 0;
-	int max_ending_here = 0;
+	int loc_sum = 0;
+	int glob_sum = 0;
 	for (int i = 0; i < n; i++)
 	{
-		max_ending_here = max(max_ending_here + arr[i], 0);
-		max_so_far = max(max_so_far, max_ending_here);
+		loc_sum = max(loc_sum + arr[i], 0);
+		glob_sum = max(loc_sum, glob_sum);
 	}
-	return max_so_far;
+	return glob_sum;
 }
 
 void get_time() 
@@ -79,6 +79,7 @@ void get_time()
 			begin = chrono::steady_clock::now();
 			kadane2(arr2, array_lengths[i_size]);
 			end = chrono::steady_clock::now();
+			delete[] arr2;
 			times.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
 		}
 		cout << array_lengths[i_size] << endl;
