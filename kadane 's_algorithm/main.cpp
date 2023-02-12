@@ -27,8 +27,22 @@ void print(vector<int>& arr)
 	cout << ']' << endl;
 }
 
-// первая рацизация алгоритма
-int kadane(vector<int>& arr, int n)
+// реацизации алгоритма
+int kadane1(vector<int>& arr, int n)
+{
+	int loc_sum = 0;
+	int glob_sum = 0;
+	for (int i = 0; i < arr.size(); i++)
+	{
+		loc_sum = loc_sum + arr[i];
+		loc_sum = max(loc_sum, 0);
+		glob_sum = max(loc_sum, glob_sum);
+	}
+	return glob_sum;
+}
+
+
+int kadane2(vector<int>& arr, int n)
 {
 	int loc_sum = 0;
 	int glob_sum = 0;
@@ -40,13 +54,27 @@ int kadane(vector<int>& arr, int n)
 	return glob_sum;
 }
 
-int kadane2(int arr[], int n)
+
+int kadane3(int arr[], int n)
 {
 	int loc_sum = 0;
 	int glob_sum = 0;
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; ++i)
 	{
-		loc_sum = max(loc_sum + arr[i], 0);
+		loc_sum = max(0, loc_sum + arr[i]);
+		glob_sum = max(loc_sum, glob_sum);
+	}
+	return glob_sum;
+}
+
+int kadane4(vector<int>& arr, int n)
+{
+	int loc_sum = 0;
+	int glob_sum = 0;
+	for (int i = 0; i < arr.size(); i++)
+	{
+		loc_sum = loc_sum + arr[i];
+		loc_sum = max(loc_sum, 0);
 		glob_sum = max(loc_sum, glob_sum);
 	}
 	return glob_sum;
@@ -63,8 +91,9 @@ void get_time()
 	for (int i_size = 0; i_size < array_lengths.size(); ++i_size)
 	{	
 		cout << "Array length: " << array_lengths[i_size] << endl;
-		vector<int> time;
-		vector<int> times;
+		vector<int> time_vector1;
+		vector<int> time_vector2;
+		vector<int> time_array;
 		for (int i_test = 0; i_test < test_count; ++i_test)
 		{
 			vector<int> arr1;
@@ -72,20 +101,27 @@ void get_time()
 
 			generate_int_array(arr1, arr2, array_lengths[i_size]);
 			begin = chrono::steady_clock::now();
-			kadane(arr1, array_lengths[i_size]);
+			kadane1(arr1, array_lengths[i_size]);
 			end = chrono::steady_clock::now();
-			time.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
+			time_vector1.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
 
 			begin = chrono::steady_clock::now();
-			kadane2(arr2, array_lengths[i_size]);
+			kadane2(arr1, array_lengths[i_size]);
+			end = chrono::steady_clock::now();
+			time_vector2.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
+
+			begin = chrono::steady_clock::now();
+			kadane3(arr2, array_lengths[i_size]);
 			end = chrono::steady_clock::now();
 			delete[] arr2;
-			times.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
+			time_array.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
 		}
 		cout << array_lengths[i_size] << endl;
 		cout << "Average time in milliseconds\n";
-		cout << "Algorithm with vector: " << accumulate(time.begin(), time.end(), 0.0) / time.size() << " ms\n";
-		cout << "Algorithm with array:  " << accumulate(times.begin(), times.end(), 0.0) / times.size() << " ms\n";
+		cout << "Algorithm with vector:     " << accumulate(time_vector1.begin(), time_vector1.end(), 0.0) / time_vector1.size() << " ms\n";
+		cout << "Opt algorithm with array:  " << accumulate(time_vector2.begin(), time_vector2.end(), 0.0) / time_vector2.size() << " ms\n";
+		cout << "Algorithm with array:      " << accumulate(time_array.begin(), time_array.end(), 0.0) / time_array.size() << " ms\n";
+
 		cout << "______________________________________\n";
 
 	}
