@@ -17,3 +17,4 @@
 ![image](https://user-images.githubusercontent.com/43996253/218330349-07578d72-1607-4c27-b496-f02cbbffdf55.png)
 
 Из тестов видно, что, начиная с массивов длины 10000, использовать стандартные динамические массивы выгоднее по времени работы. 
+Ссылка на репозиторий с реализацией: https://github.com/u-tain/evolutionary_algorithms/tree/main/kadane%20's_algorithm
