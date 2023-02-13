@@ -28,7 +28,7 @@ void print(vector<int>& arr)
 }
 
 // реацизации алгоритма
-int kadane1(vector<int>& arr, int n)
+int kadane1(vector<int>& arr)
 {
 	int loc_sum = 0;
 	int glob_sum = 0;
@@ -101,7 +101,7 @@ void get_time()
 
 			generate_int_array(arr1, arr2, array_lengths[i_size]);
 			begin = chrono::steady_clock::now();
-			kadane1(arr1, array_lengths[i_size]);
+			kadane1(arr1);
 			end = chrono::steady_clock::now();
 			time_vector1.push_back(chrono::duration_cast<chrono::milliseconds>(end - begin).count());
 
