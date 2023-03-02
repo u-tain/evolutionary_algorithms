@@ -10,7 +10,6 @@ public class MyMutation implements EvolutionaryOperator<double[]> {
         // initial population
         // need to change individuals, but not their number!
         // your implementation:
-        // выберем индивидов с вероятностью 1/population size
         double p1 = 1./population.size();
         double p2 = 1./population.get(0).length;
         for (int i = 0; i < population.size(); i++) {
@@ -19,8 +18,6 @@ public class MyMutation implements EvolutionaryOperator<double[]> {
                 for (int j = 0; j < population.get(i).length; j++){
                     if (random.nextDouble()<p2){
                         population.get(i)[j] = random.nextDouble() * 11 - 5;
-                        System.out.println("мутируем");
-                        //break;
                     }
                 }
             }
