@@ -18,7 +18,7 @@ public class MyFactory extends AbstractCandidateFactory<double[]> {
 
         // your implementation:
         for (int i = 0; i < solution.length; i++) {
-            solution[i] = random.nextInt(10 + 1) - 5;
+            solution[i] = random.nextDouble() * 11 - 5;
         }
         return solution;
     }
