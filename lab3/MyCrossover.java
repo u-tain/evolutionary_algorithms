@@ -27,8 +27,8 @@ public class MyCrossover extends AbstractCrossover<double[]> {
         double[] ch2 = p2.clone();
         double alpha = 1;
         for (int j = 0; j < i; j++) {
-            ch1[numbers.get(j)] = alpha * ch2[numbers.get(j)] + (1 - alpha) * ch1[numbers.get(j)];
-            ch2[numbers.get(j)] = alpha * ch1[numbers.get(j)] + (1 - alpha) * ch2[numbers.get(j)];
+            ch1[numbers.get(j)] = alpha * p2[numbers.get(j)] + (1 - alpha) * p1[numbers.get(j)];
+            ch2[numbers.get(j)] = alpha * p1[numbers.get(j)] + (1 - alpha) * p2[numbers.get(j)];
         }
 //        children.add(p1);
 //        children.add(p2);
