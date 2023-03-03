@@ -17,7 +17,7 @@ public class MyMutation implements EvolutionaryOperator<double[]> {
                 //мутируем
                 for (int j = 0; j < population.get(i).length; j++){
                     if (random.nextDouble()<p2){
-                        population.get(i)[j] = random.nextDouble() * 11 - 5;
+                        population.get(i)[j] = random.nextDouble() * 10 - 5;
                     }
                 }
             }
