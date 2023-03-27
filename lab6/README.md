@@ -12,7 +12,7 @@
 | Islands       | 914 ms           | 6.825           | Islands       | 1458 ms          | 6.956     |
 |               | complexity = 4   |                 |               | complexity = 5   |           |
 | Single-thread | 198 ms           | 7.768           | Single-thread | 116 ms           | 6.969     |
-| Master-slave  | 159 ms           | 7.557           | Master-slave  | 217 ms           | 6.594     |
+| Master-slave  | 159 ms           | 7.557           | Master-slave  | 217 ms           | 7.465     |
 | Islands       | 1216 ms          | 6.483           | Islands       | 1451 ms          | 6.872     |
 
 ### Вопросы
